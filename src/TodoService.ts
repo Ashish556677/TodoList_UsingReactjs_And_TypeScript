@@ -15,12 +15,10 @@ const TodoService = {
     // Implementation to update a todo
     return todo;
   },
-  deleteTodo: (id: number) => {
-    let todos: TodoTypes[] = []; // Assuming TodoTypes is the type of your todo items
-    todos = todos.filter(todo => todo.id !== id);
-
-    // Implementation to delete a todo using the id parameter
-}
+  deleteTodo: (id: number, todos: TodoTypes[]) => {
+    // Implementation to delete a todo
+    return todos.filter(todo => todo.id !== id);
+  }
 };
 
 export default TodoService;

@@ -41,8 +41,9 @@ const TodoList: React.FC = () => {
   };
 
   const handleDeleteTodo = (id: number) => {
-    TodoService.deleteTodo(id);
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    // Pass the id parameter to the deleteTodo method
+    const updatedTodos = TodoService.deleteTodo(id, todos);
+    setTodos(updatedTodos);
   };
 
   return (
