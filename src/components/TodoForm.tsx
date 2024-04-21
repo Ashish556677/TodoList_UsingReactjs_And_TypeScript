@@ -15,7 +15,7 @@ const TodoForm: React.FC<PropTypes> = ({ setTodos, addTodos }) => {
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== "") {
-      const newTodo = addTodos(newTodoText); // Corrected method name
+      const newTodo = addTodos(newTodoText); // Use addTodos instead of addTodo
       setTodos((prevTodos) => [...prevTodos, newTodo]);
       setNewTodoText("");
     }
