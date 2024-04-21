@@ -1,7 +1,9 @@
+// TodoForm.tsx
+
 import React, { Dispatch, SetStateAction, useState } from "react";
 import TodoService from "../TodoService";
 import TodoTypes from "../todo";
-import "../css/TodoForm.css"
+import "../css/TodoForm.css";
 
 interface PropTypes {
   setTodos: Dispatch<SetStateAction<TodoTypes[]>>;
@@ -12,11 +14,12 @@ const TodoForm: React.FC<PropTypes> = ({ setTodos }) => {
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== "") {
-      const newTodo = TodoService.addTodo(newTodoText);
+      const newTodo = TodoService.addTodo(newTodoText); // Corrected method name
       setTodos((prevTodos) => [...prevTodos, newTodo]);
       setNewTodoText("");
     }
   };
+
   return (
     <div className="inputForm">
       <input

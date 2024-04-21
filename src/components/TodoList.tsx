@@ -1,3 +1,5 @@
+// TodoList.tsx
+
 import React, { useState } from "react";
 import TodoService from "../TodoService";
 import TodoTypes from "../todo";
@@ -9,11 +11,9 @@ import { GiCancel } from "react-icons/gi";
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<TodoTypes[]>(TodoService.getTodos());
-
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
   const [editedTodoText, setEditedTodoText] = useState<string>("");
 
-  //function for handling edit Actions
   const handleEditStart = (id: number, text: string) => {
     setEditingTodoId(id);
     setEditedTodoText(text);
@@ -24,8 +24,6 @@ const TodoList: React.FC = () => {
     setEditedTodoText("");
   };
   
-  // function to handle Edit save
-
   const handleEditSave = (id: number) => {
     if (editedTodoText.trim() !== "") {
       const updatedTodo = TodoService.updateTodo({
@@ -34,8 +32,6 @@ const TodoList: React.FC = () => {
         completed: false,
       });
 
-  //update the state variable using setTodo Functions it will replace the old todo with the new one with matching id
-      
       setTodos((prevTodos) =>
         prevTodos.map((todo) => (todo.id === id ? updatedTodo : todo))
       );
@@ -44,7 +40,6 @@ const TodoList: React.FC = () => {
     }
   };
 
-// function to handle delete todo
   const handleDeleteTodo = (id: number) => {
     TodoService.deleteTodo(id);
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
@@ -53,15 +48,11 @@ const TodoList: React.FC = () => {
   return (
     <div className="todoContainer">
       <div>
-        {/* Todo Input From Component Goes Here */}
-            {/* Todo form */}
         <TodoForm setTodos={setTodos} />
       </div>
-      {/* Todo List Goes Here */}
       <div className="todos">
         {todos.map((todo) => (
           <div className="items" key={todo.id}>
-            {/* Todo Item Component Goes Here */}
             {editingTodoId === todo.id ? (
               <div className="editText">
                 <input
