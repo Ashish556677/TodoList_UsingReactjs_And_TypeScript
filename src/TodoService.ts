@@ -7,11 +7,11 @@ const TodoService = {
     // Implementation to retrieve todos
     return [];
   },
-  addTodo: (text: string) => {
+  addTodos: (text: string) => {
     // Implementation to add a new todo
     return { id: 1, text, completed: false } as TodoTypes;
   },
-  updateTodo: (todo: TodoTypes) => {
+  UpdateTodo: (todo: TodoTypes) => {
     // Implementation to update a todo
     return todo;
   },

@@ -26,7 +26,7 @@ const TodoList: React.FC = () => {
   
   const handleEditSave = (id: number) => {
     if (editedTodoText.trim() !== "") {
-      const updatedTodo = TodoService.updateTodo({
+      const updatedTodo = TodoService.UpdateTodo({ // Corrected method name
         id,
         text: editedTodoText,
         completed: false,
@@ -48,7 +48,7 @@ const TodoList: React.FC = () => {
   return (
     <div className="todoContainer">
       <div>
-        <TodoForm setTodos={setTodos} />
+        <TodoForm setTodos={setTodos} addTodos={TodoService.addTodos} /> {/* Corrected property name */}
       </div>
       <div className="todos">
         {todos.map((todo) => (

@@ -7,14 +7,15 @@ import "../css/TodoForm.css";
 
 interface PropTypes {
   setTodos: Dispatch<SetStateAction<TodoTypes[]>>;
+  addTodos: (text: string) => TodoTypes; // Corrected property name
 }
 
-const TodoForm: React.FC<PropTypes> = ({ setTodos }) => {
+const TodoForm: React.FC<PropTypes> = ({ setTodos, addTodos }) => {
   const [newTodoText, setNewTodoText] = useState<string>("");
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== "") {
-      const newTodo = TodoService.addTodo(newTodoText); // Corrected method name
+      const newTodo = addTodos(newTodoText); // Corrected method name
       setTodos((prevTodos) => [...prevTodos, newTodo]);
       setNewTodoText("");
     }
