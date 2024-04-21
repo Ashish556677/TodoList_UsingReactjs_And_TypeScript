@@ -1,3 +1,4 @@
+
 interface TodoTypes {
     id: number;
     text: string;
@@ -5,3 +6,4 @@ interface TodoTypes {
   }
   
   export default TodoTypes;
+  

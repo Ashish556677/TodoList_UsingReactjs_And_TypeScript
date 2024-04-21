@@ -1,25 +1,22 @@
-// TodoForm.tsx
-
 import React, { Dispatch, SetStateAction, useState } from "react";
+import TodoService from "../TodoService";
 import TodoTypes from "../todo";
-import "../css/TodoForm.css";
+import "../css/TodoForm.css"
 
 interface PropTypes {
   setTodos: Dispatch<SetStateAction<TodoTypes[]>>;
-  addTodos: (text: string) => TodoTypes; // Corrected property name
 }
 
-const TodoForm: React.FC<PropTypes> = ({ setTodos, addTodos }) => {
+const TodoForm: React.FC<PropTypes> = ({ setTodos }) => {
   const [newTodoText, setNewTodoText] = useState<string>("");
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== "") {
-      const newTodo = addTodos(newTodoText); // Use addTodos instead of addTodo
+      const newTodo = TodoService.addTodo(newTodoText);
       setTodos((prevTodos) => [...prevTodos, newTodo]);
       setNewTodoText("");
     }
   };
-
   return (
     <div className="inputForm">
       <input

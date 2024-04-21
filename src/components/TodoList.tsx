@@ -1,5 +1,3 @@
-// TodoList.tsx
-
 import React, { useState } from "react";
 import TodoService from "../TodoService";
 import TodoTypes from "../todo";
@@ -11,6 +9,7 @@ import { GiCancel } from "react-icons/gi";
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<TodoTypes[]>(TodoService.getTodos());
+
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
   const [editedTodoText, setEditedTodoText] = useState<string>("");
 
@@ -23,15 +22,14 @@ const TodoList: React.FC = () => {
     setEditingTodoId(null);
     setEditedTodoText("");
   };
-  
+
   const handleEditSave = (id: number) => {
     if (editedTodoText.trim() !== "") {
-      const updatedTodo = TodoService.UpdateTodo({
+      const updatedTodo = TodoService.updateTodo({
         id,
         text: editedTodoText,
         completed: false,
       });
-
       setTodos((prevTodos) =>
         prevTodos.map((todo) => (todo.id === id ? updatedTodo : todo))
       );
@@ -41,15 +39,14 @@ const TodoList: React.FC = () => {
   };
 
   const handleDeleteTodo = (id: number) => {
-    // Pass the id parameter to the deleteTodo method
-    const updatedTodos = TodoService.deleteTodo(id, todos);
-    setTodos(updatedTodos);
+    TodoService.deleteTodo(id);
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
   return (
     <div className="todoContainer">
       <div>
-        <TodoForm setTodos={setTodos} addTodos={TodoService.addTodos} /> {/* Use addTodos instead of addTodo */}
+        <TodoForm setTodos={setTodos} />
       </div>
       <div className="todos">
         {todos.map((todo) => (
